@@ -1,0 +1,44 @@
+.container{
+  position: relative;
+  height: auto;
+  margin: 0 auto;
+  height: 500 px;
+  width: 400 px;
+  border: 4px solid black;
+ 
+}
+.inputCollection{
+  
+  display: block;
+  
+}
+.label{
+  position: inherit;
+  margin: 0 auto;
+  padding: 5px;
+  font-size: larger;
+}
+#textInput{
+  font-size: medium;
+  width: 50%;
+  height: 30px;
+  border: 2px solid black;
+  background-color: orange;
+}
+
+ul {
+    list-style-type:none;
+    font-size: larger;
+  }
+
+ label{
+  font-size: large;
+ }
+ #addButton{
+  background-color: orange;
+  border: 2px solid black;
+  border-radius: 3px;
+  width: 60px;
+  height: 37px;
+  margin: 4px;
+ }
