@@ -1,7 +1,7 @@
-var mainList = [];
-var ul = document.getElementById("checkList");
-var addButton = document.getElementById("addButton");
-var completedCheck = document.getElementById("completedCheck");
+let mainList = [];
+let ul = document.getElementById("checkList");
+let addButton = document.getElementById("addButton");
+let completedCheck = document.getElementById("completedCheck");
 
 function checkedMarkedOn() {
   //console.log('in');
@@ -10,9 +10,9 @@ function checkedMarkedOn() {
     let checkedTable = [];
 
     if (checkedBoxList.length > 0) {
-      for (var i = 0; i < checkedBoxList.length; i++) {
+      for (let i = 0; i < checkedBoxList.length; i++) {
         if (checkedBoxList[i].checked) {
-          checkedTable.push(checkedBoxList[i].name);
+          checkedTable.push({titleBar:String(checkedBoxList[i].name), checking: true });
         }
       }
       console.log("i",checkedTable);
@@ -25,25 +25,54 @@ function checkedMarkedOn() {
 }
 
 //showing checkbox list
-function showList(lista) {
+function showList(list) {
   clearCheckedList();
-
-  if (lista.length > 0) {
-    for (var i = 0; i < mainList.length; i++) {
-      var li = document.createElement("li");
+console.log("view",list)
+  if (list.length > 0) {
+    /*for (let i = 0; i < list.length; i++) {
+     
+     
+      let li = document.createElement("li");
       li.className = "checkedLiPoint";
-      var check = document.createElement("input");
+      let check = document.createElement("input");
 
       check.type = "checkbox";
       check.className = "checkListBox";
-      check.name = lista[i];
+      check.name = list[i].titleBar.toString();
       check.value = "value";
+      if(list[i].checking === true){
+        check.checked = true;
+      }
 
-      li.appendChild(document.createTextNode(lista[i]));
+      li.appendChild(document.createTextNode(list[i]));
       li.appendChild(check);
 
       ul.appendChild(li);
     }
+*/
+list.forEach(function (item){
+  
+  let li = document.createElement("li");
+  li.className = "checkedLiPoint";
+  let check = document.createElement("input");
+
+  check.type = "checkbox";
+  check.className = "checkListBox";
+  check.name = item.titleBar;
+  check.value = "value";
+
+  if(item.checking===true)
+  {
+    check.checked = true;
+  }
+  li.appendChild(document.createTextNode(item.titleBar));
+  li.appendChild(check);
+
+  ul.appendChild(li);
+
+});
+
+
   }
 }
 
@@ -57,7 +86,10 @@ function clearCheckedList() {
 
 addButton.addEventListener("click", function () {
   const texto = document.getElementById("textInput");
-  mainList.push(texto.value);
+ // mainList.push(texto.value);
+ mainList.push({titleBar: texto.value, checking: false});
+
+ console.log(mainList);
   showList(mainList);
 });
 
