@@ -15,7 +15,7 @@ function checkedMarkedOn() {
           checkedTable.push({titleBar:String(checkedBoxList[i].name), checking: true });
         }
       }
-      console.log("i",checkedTable);
+      
       showList(checkedTable);
       
     }
@@ -27,29 +27,9 @@ function checkedMarkedOn() {
 //showing checkbox list
 function showList(list) {
   clearCheckedList();
-console.log("view",list)
-  if (list.length > 0) {
-    /*for (let i = 0; i < list.length; i++) {
-     
-     
-      let li = document.createElement("li");
-      li.className = "checkedLiPoint";
-      let check = document.createElement("input");
 
-      check.type = "checkbox";
-      check.className = "checkListBox";
-      check.name = list[i].titleBar.toString();
-      check.value = "value";
-      if(list[i].checking === true){
-        check.checked = true;
-      }
+if (list.length > 0) {
 
-      li.appendChild(document.createTextNode(list[i]));
-      li.appendChild(check);
-
-      ul.appendChild(li);
-    }
-*/
 list.forEach(function (item){
   
   let li = document.createElement("li");
@@ -87,10 +67,35 @@ function clearCheckedList() {
 addButton.addEventListener("click", function () {
   const texto = document.getElementById("textInput");
  // mainList.push(texto.value);
- mainList.push({titleBar: texto.value, checking: false});
+ //check if word is on the list
+if(checkRepeating(texto.value)===true)
+{
+  alert('Ufff... Zadanie o tej nazwie juz znajduje się na liście!');
+}
+else if(texto.value === ""){
+  alert('Podaj nazwę zadania :)')
+}
+else{
+  mainList.push({titleBar: texto.value, checking: false});
 
- console.log(mainList);
-  showList(mainList);
+  console.log(mainList);
+   showList(mainList);
+}
+
 });
+
+function checkRepeating(word){
+ let answer = false;
+  if(mainList.length>0){
+    mainList.forEach(function(index){
+      if(index.titleBar === word){
+        console.log("w");
+        answer = true;
+      } 
+    });
+  }
+  
+  return answer;
+}
 
 completedCheck.addEventListener("change", checkedMarkedOn);
